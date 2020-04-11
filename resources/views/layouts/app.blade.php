@@ -15,7 +15,6 @@
 <div class="super_container">
 
     <!-- Header -->
-
     @include('components.header')
 
     <!-- Banner -->

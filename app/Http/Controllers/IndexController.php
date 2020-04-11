@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Menu;
 
 class IndexController extends Controller
 {
 
-    public function __construct()
+    public function __construct(Menu $menuApp)
     {
-        parent::__construct();
+        parent::__construct($menuApp);
     }
 
     /*

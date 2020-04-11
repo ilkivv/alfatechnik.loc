@@ -12,9 +12,9 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    function __construct()
+    function __construct(Menu $menuApp)
     {
-        $menuApp = new Menu();
-        $menuItems = $menuApp->getMenuItems();
+        $this->menu = [];
+        $menu['menuItems'] = 111;
     }
 }
