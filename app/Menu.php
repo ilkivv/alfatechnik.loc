@@ -15,4 +15,9 @@ class Menu extends Model
     {
         return $this->hasMany(Menu::class, 'parent_id');
     }
+
+    public function getMenuItems()
+    {
+        return $this->where('active', 1)->get();
+    }
 }
