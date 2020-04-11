@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'IndexController@index')->name('index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/contacts', 'IndexController@contacts')->name('contacts');
+
+Route::get('/shop', 'IndexController@shop')->name('shop');
