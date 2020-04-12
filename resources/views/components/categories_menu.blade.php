@@ -6,7 +6,7 @@
 
     <ul class="cat_menu">
         @foreach($categoriesItems as $categoriesItem)
-        <li><a href="{{url('/catalog/'.$categoriesItem['url'])}}">{!! $categoriesItem['name'] !!}<i class="fas fa-chevron-right ml-auto"></i></a></li>
+        <li><a href="{{url($categoriesItem['url'])}}">{!! $categoriesItem['name'] !!}<i class="fas fa-chevron-right ml-auto"></i></a></li>
         @endforeach
         <li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
         <li class="hassubs">

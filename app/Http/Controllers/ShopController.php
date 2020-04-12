@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Product;
+use Illuminate\Routing\UrlGenerator;
+use Illuminate\Support\Facades\Route;
 
 class ShopController extends Controller
 {
@@ -12,13 +15,19 @@ class ShopController extends Controller
 
     }
 
-    public function products()
+    public function products(Category $categoryModel, Request $request)
     {
-        return view('shop.products');
+        $url = $request->path();
+        $category = $categoryModel->getProductsItems($url);
+        //print_r($category);die;
+        $category->count = count($category->products);
+        //$paginator = Paginator::make($items, $totalItems, $perPage);
+        return view('shop.products', ['category' => $category]);
     }
 
-    public function product()
+    public function product($id, Product $productModel)
     {
-        return view('shop.product');
+        $product = $productModel->getProductItem($id);
+        return view('shop.product', ['product' => $product]);
     }
 }

@@ -24,4 +24,4 @@ Route::get('/catalog/{url}/{url1}', 'ShopController@products')->name('products')
 
 Route::get('/catalog/{url}/{url1}/{url2}', 'ShopController@products')->name('products');
 
-Route::get('/product/{url}', 'ShopController@product')->name('product');
+Route::get('/product/{id}', 'ShopController@product')->name('product');
