@@ -9,12 +9,11 @@
                             <span class="custom_dropdown_placeholder clc">Все категории</span>
                             <i class="fas fa-chevron-down"></i>
                             <ul class="custom_list clc">
-                                <li><a class="clc" href="#">All Categories</a></li>
-                                <li><a class="clc" href="#">Computers</a></li>
-                                <li><a class="clc" href="#">Laptops</a></li>
-                                <li><a class="clc" href="#">Cameras</a></li>
-                                <li><a class="clc" href="#">Hardware</a></li>
-                                <li><a class="clc" href="#">Smartphones</a></li>
+
+                                <li><a class="clc" href="#">Все категории</a></li>
+                                    @foreach($categoriesItems as $categoriesItem)
+                                <li><a class="clc" href="#">{!! $categoriesItem['name'] !!}</a></li>
+                                    @endforeach
                             </ul>
                         </div>
                     </div>

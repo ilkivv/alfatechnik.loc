@@ -3,21 +3,23 @@
 namespace App\Http\ViewComposers;
 
 use Illuminate\View\View;
-use App\Menu;
+use App\Category;
 
-class MenuComposer
+class CategoryComposer
 {
 
     /**
      * Create a new profile composer.
      *
      * @internal param UserRepository $users
-     * @param Menu $menu
+     * @param Category $category
+     * @internal param Catalog $catalog
+     * @internal param Menu $menu
      */
 
-    public function __construct(Menu $menu)
+    public function __construct(Category $category)
     {
-        $this->menu = $menu;
+        $this->category = $category;
     }
 
     /**
@@ -29,8 +31,8 @@ class MenuComposer
      */
     public function compose(View $view)
     {
-        $menuItems = $this->menu->getMenuItems();
-        $view->with('menuItems', $menuItems);
+        $categoriesItems = $this->category->getCategoriesItems();
+        $view->with('categoriesItems', $categoriesItems);
     }
 }
 

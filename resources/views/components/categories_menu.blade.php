@@ -5,13 +5,9 @@
     </div>
 
     <ul class="cat_menu">
-        <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-        <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-        <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-        <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-        <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-        <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-        <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
+        @foreach($categoriesItems as $categoriesItem)
+        <li><a href="{{url('/catalog/'.$categoriesItem['url'])}}">{!! $categoriesItem['name'] !!}<i class="fas fa-chevron-right ml-auto"></i></a></li>
+        @endforeach
         <li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
         <li class="hassubs">
             <a href="#">Hardware<i class="fas fa-chevron-right"></i></a>

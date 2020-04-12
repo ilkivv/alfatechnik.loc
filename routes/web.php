@@ -16,4 +16,12 @@ Route::get('/', 'IndexController@index')->name('index');
 
 Route::get('/contacts', 'IndexController@contacts')->name('contacts');
 
-Route::get('/shop', 'IndexController@shop')->name('shop');
+Route::get('/catalog', 'IndexController@catalog')->name('catalog');
+
+Route::get('/catalog/{url}', 'ShopController@products')->name('products');
+
+Route::get('/catalog/{url}/{url1}', 'ShopController@products')->name('products');
+
+Route::get('/catalog/{url}/{url1}/{url2}', 'ShopController@products')->name('products');
+
+Route::get('/product/{url}', 'ShopController@product')->name('product');

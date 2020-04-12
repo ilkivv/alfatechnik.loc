@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Menu;
+use App\Catalog;
 
 class IndexController extends Controller
 {
@@ -32,7 +33,7 @@ class IndexController extends Controller
     /*
      * Каталог
      */
-    public function shop()
+    public function catalog()
     {
         return view('shop.catalog');
     }

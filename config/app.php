@@ -175,7 +175,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Пользовательские провайдеры
+         */
         App\Providers\MenuServiceProvider::class,
+        App\Providers\CategoryServiceProvider::class,
 
         /**
          * SleepingOwl Service Provider
