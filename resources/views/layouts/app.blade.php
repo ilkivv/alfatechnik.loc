@@ -30,12 +30,13 @@
 @include('components.footer')
 
 <!-- Copyright -->
+@include('components.copyright')
 
-    @include('components.copyright')
 </div>
 
 @yield('scripts')
 
+@include('components.scripts')
 </body>
 
 </html>

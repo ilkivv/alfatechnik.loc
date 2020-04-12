@@ -54,23 +54,27 @@
                         <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
                         <div class="product_text"><p>{!! $product->preview !!}</p></div>
                         <div class="order_info d-flex flex-row">
-                            <form action="#">
+                            <form id="add-cart-form" method="post">
+                                {{ csrf_field() }}
                                 <div class="clearfix" style="z-index: 1000;">
 
                                     <!-- Product Quantity -->
                                     <div class="product_quantity clearfix">
                                         <span>Количество: </span>
-                                        <input id="quantity_input" type="text" pattern="[0-9]*" value="1">
+                                        <input id="quantity_input" name="quantity" type="text" pattern="[0-9]*" value="1">
                                         <div class="quantity_buttons">
                                             <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
                                             <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <input id="product_id" name="product_id" type="hidden" value="{{$product->id}}">
+
                                 <div class="clearfix">В наличии: {!! $product->quantity !!} шт.</div>
                                 <div class="product_price">{!! $product->prices->first()->price !!} Р.</div>
                                 <div class="button_container">
-                                    <button type="button" class="button cart_button">Добавить в корзину</button>
+                                    <button type="button" class="button cart_button j-button-addcart">Добавить в корзину</button>
                                     <div class="product_fav"><i class="fas fa-heart"></i></div>
                                 </div>
 

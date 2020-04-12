@@ -33,3 +33,5 @@ Route::get('/profile', 'ProfileController@profile')->name('profile');
 Route::get('/cart', 'ShopController@cart')->name('cart');
 
 Route::get('/wishlist', 'ProfileController@wishlist')->name('wishlist');
+
+Route::post('/add_cart', 'Ajax\CartController@addCart')->name('add_cart');
