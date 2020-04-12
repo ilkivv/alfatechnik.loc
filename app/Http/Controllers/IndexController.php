@@ -34,6 +34,6 @@ class IndexController extends Controller
      */
     public function shop()
     {
-        return view('shop.shop');
+        return view('shop.catalog');
     }
 }
