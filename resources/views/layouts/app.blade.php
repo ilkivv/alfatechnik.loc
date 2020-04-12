@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <title>Альфа.ру - @yield('title')</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta name="description" content="@yield('description')">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @yield('styles')
@@ -15,22 +19,22 @@
 <div class="super_container">
 
     <!-- Header -->
-    @include('components.header')
+@include('components.header')
 
-    <!-- Content -->
+<!-- Content -->
 
-    @yield('content')
+@yield('content')
 
-    <!-- Footer -->
+<!-- Footer -->
 
-    @include('components.footer')
+@include('components.footer')
 
-    <!-- Copyright -->
+<!-- Copyright -->
 
     @include('components.copyright')
 </div>
 
-    @yield('scripts')
+@yield('scripts')
 
 </body>
 

@@ -25,3 +25,11 @@ Route::get('/catalog/{url}/{url1}', 'ShopController@products')->name('products')
 Route::get('/catalog/{url}/{url1}/{url2}', 'ShopController@products')->name('products');
 
 Route::get('/product/{id}', 'ShopController@product')->name('product');
+
+Auth::routes();
+
+Route::get('/profile', 'ProfileController@profile')->name('profile');
+
+Route::get('/cart', 'ShopController@cart')->name('cart');
+
+Route::get('/wishlist', 'ProfileController@wishlist')->name('wishlist');

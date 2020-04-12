@@ -19,9 +19,7 @@ class ShopController extends Controller
     {
         $url = $request->path();
         $category = $categoryModel->getProductsItems($url);
-        //print_r($category);die;
         $category->count = count($category->products);
-        //$paginator = Paginator::make($items, $totalItems, $perPage);
         return view('shop.products', ['category' => $category]);
     }
 
@@ -29,5 +27,10 @@ class ShopController extends Controller
     {
         $product = $productModel->getProductItem($id);
         return view('shop.product', ['product' => $product]);
+    }
+
+    public function cart()
+    {
+        return view('shop.cart');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Menu;
 use App\Catalog;
+use Illuminate\Auth;
 
 class IndexController extends Controller
 {
