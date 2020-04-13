@@ -17,7 +17,14 @@
                                 @endif
                             @else
                                 <div><a href="">{{ Auth::user()->name }}</a></div>
-                                <div><a href="{{ route('logout') }} }}">Выйти</a></div>
+                                <div>
+                                    <a class="j-link-out-form" href="#">Выйти</a>
+                                    <form action="{{ route('logout') }}" method="post" hidden>
+                                        {{ csrf_field() }}
+                                        <button class="j-submit-out-form" type="submit" hidden/>
+                                    </form>
+                                </div>
+
                             @endguest
                     </div>
                 </div>

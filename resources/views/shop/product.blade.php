@@ -54,7 +54,7 @@
                         <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
                         <div class="product_text"><p>{!! $product->preview !!}</p></div>
                         <div class="order_info d-flex flex-row">
-                            <form id="add-cart-form" method="post">
+                            <form id="add-product-form" method="post">
                                 {{ csrf_field() }}
                                 <div class="clearfix" style="z-index: 1000;">
 
@@ -74,7 +74,7 @@
                                 <div class="clearfix">В наличии: {!! $product->quantity !!} шт.</div>
                                 <div class="product_price">{!! $product->prices->first()->price !!} Р.</div>
                                 <div class="button_container">
-                                    <button type="button" class="button cart_button j-button-addcart">Добавить в корзину</button>
+                                    <button type="button" class="button cart_button j-button-add-product">Добавить в корзину</button>
                                     <div class="product_fav"><i class="fas fa-heart"></i></div>
                                 </div>
 

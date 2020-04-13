@@ -14,7 +14,6 @@
     <link href="/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="/styles/cart_styles.css">
     <link rel="stylesheet" type="text/css" href="/styles/cart_responsive.css">
-
 @stop
 
 @section('content')
@@ -23,58 +22,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
-                    <div class="cart_container">
-                        <div class="cart_title">Корзина</div>
-
-                        @if(Session::has('cart'))
-                        <div class="cart_items">
-
-                            <ul class="cart_list">
-                                @foreach(Session::get('cart.products') as $product)
-                                <li class="cart_item clearfix">
-                                    <div class="cart_item_image"><img src="/images/shopping_cart.jpg" alt=""></div>
-                                    <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-                                        <div class="cart_item_name cart_info_col">
-                                            <div class="cart_item_title">Наименование</div>
-                                            <a href="{{ url('/product/' . $product->id) }}"><div class="cart_item_text">{!! $product->name !!}</div></a>
-                                        </div>
-                                        <div class="cart_item_quantity cart_info_col">
-                                            <div class="cart_item_title">Количество</div>
-                                            <div class="cart_item_text">{!! $product->quantity_item !!}</div>
-                                        </div>
-                                        <div class="cart_item_price cart_info_col">
-                                            <div class="cart_item_title">Стоимость</div>
-                                            <div class="cart_item_text">{!! $product->price_item !!}</div>
-                                        </div>
-                                        <div class="cart_item_total cart_info_col">
-                                            <div class="cart_item_title">Цена</div>
-                                            <div class="cart_item_text">{!! $product->total_item !!}</div>
-                                        </div>
-                                        <div class="cart_item_color cart_info_col">
-                                            <div class="cart_item_title">Удалить</div>
-                                            <div class="cart_item_text"><span style="background-color:#999999;"></span></div>
-                                        </div>
-                                    </div>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-
-                        <!-- Order Total -->
-                        <div class="order_total">
-                            <div class="order_total_content text-md-right">
-                                <div class="order_total_title">Итого:</div>
-                                <div class="order_total_amount">{!! Session::get('cart.total') !!} Р</div>
-                            </div>
-                        </div>
-
-                        <div class="cart_buttons">
-                            <button type="button" class="button cart_button_clear j-cart_button_clear">Очистить</button>
-                            <button type="button" class="button cart_button_checkout j-cart_button_order">Оформить заказ</button>
-                        </div>
-                        @else
-                        Корзина пуста
-                        @endif
+                    <div class="cart_container j-cart_container">
+                        @include('components.cart_block')
                     </div>
                 </div>
             </div>
@@ -97,5 +46,6 @@
     <script src="/plugins/greensock/ScrollToPlugin.min.js"></script>
     <script src="/plugins/easing/easing.js"></script>
     <script src="/js/cart_custom.js"></script>
+    <script src="/js/product_custom.js"></script>
 
 @stop

@@ -27,7 +27,7 @@ class CartController extends Controller
         print_r($products);
     }
 
-    public function addCart(Request $request, Product $productModel)
+    public function addProduct(Request $request, Product $productModel)
     {
         $context = $request->all();
         $cart = $this->getCart();
@@ -35,14 +35,14 @@ class CartController extends Controller
         $product_id = $context['product_id'];
         $quantity_item = $context['quantity'];
 
-        isset($cart['total']) ? $cart['total'] : 0;
-        isset($cart['quantity']) ? $cart['quantity'] : 0;
+        isset($cart['total']) ? $cart['total'] : $cart['total'] = 0;
+        isset($cart['quantity']) ? $cart['quantity'] : $cart['quantity'] = 0;
+
         if (!isset($cart['products'][$product_id])){
             $cart['products'][$product_id] = $productModel->getProductItem($product_id);
             $cart['products'][$product_id]['quantity_order'] = 0;
             $cart['products'][$product_id]['quantity_item'] = 0;
             $cart['products'][$product_id]['total_item'] = 0;
-            $cart['quantity'] = 0;
         }
         $price = $cart['products'][$product_id]['prices'][0]['price'];
         $cart['products'][$product_id]['price_item'] = $price;
@@ -51,6 +51,24 @@ class CartController extends Controller
         $cart['total'] += $price * $quantity_item;
         $cart['quantity'] += $quantity_item;
         $this->session->put('cart', $cart);
+        return $cart;
+    }
+
+    public function deleteProduct(Request $request)
+    {
+        $context = $request->all();
+        $cart = $this->getCart();
+
+        $product_id = $context['product_id'];
+        $cart['quantity'] -= $cart['products'][$product_id]['quantity_item'];
+        $cart['total'] -= $cart['products'][$product_id]['total_item'];
+        unset($cart['products'][$product_id]);
+        $this->session->put('cart', $cart);
+
+        if (count($cart['products']) < 1){
+            $this->destroyCart();
+        }
+        $cart['view'] = (String) view('components.cart_block');
         return $cart;
     }
 

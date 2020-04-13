@@ -6,27 +6,26 @@
 
     <ul class="cat_menu">
         @foreach($categoriesItems as $categoriesItem)
-        <li><a href="{{url($categoriesItem['url'])}}">{!! $categoriesItem['name'] !!}<i class="fas fa-chevron-right ml-auto"></i></a></li>
+            <li class="hassubs">
+                <a href="{{url($categoriesItem['url'])}}">{!! $categoriesItem['name'] !!}<i class="fas fa-chevron-right ml-auto"></i></a>
+                @if(isset($categoriesItem['childrens']))
+                <ul>
+                    @foreach($categoriesItem['childrens'] as $subcategory)
+                    <li class="hassubs">
+                        <a href="{{url($subcategory['url'])}}">{!! $subcategory['name'] !!}<i class="fas fa-chevron-right"></i></a>
+                        @if(isset($subcategory['childrens']))
+                        <ul>
+                            @foreach($subcategory['childrens'] as $children)
+                            <li><a href="{{url($children['url'])}}">{!! $children['name'] !!}<i class="fas fa-chevron-right"></i></a></li>
+                            @endforeach
+                        </ul>
+                        @endif
+                    </li>
+                    @endforeach
+                </ul>
+                @endif
+            </li>
         @endforeach
-        <li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
-        <li class="hassubs">
-            <a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
-            <ul>
-                <li class="hassubs">
-                    <a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                    <ul>
-                        <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                        <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                        <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                        <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-            </ul>
-        </li>
-        <li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
     </ul>
 </div>
 
