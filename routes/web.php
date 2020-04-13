@@ -39,3 +39,5 @@ Route::post('/ajax/add_product', 'Ajax\CartController@addProduct')->name('add_pr
 Route::post('/ajax/destroy_cart', 'Ajax\CartController@destroyCart')->name('destroy_cart');
 
 Route::post('/ajax/delete_product', 'Ajax\CartController@deleteProduct')->name('delete_product');
+
+Route::post('/ajax/quantity_product', 'Ajax\CartController@quantityProduct')->name('quantity_product');

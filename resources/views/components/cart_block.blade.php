@@ -17,7 +17,7 @@
                                     <div class="cart_item_title">Количество</div>
                                     <div class="product_quantity clearfix">
                                         <span>Количество: </span>
-                                        <input id="quantity_input" class="j-quantity_input" name="quantity" type="text" pattern="[0-9]*" value="{!! $product->quantity_item !!}">
+                                        <input id="quantity_input" class="j-quantity_input" name="quantity" type="text" pattern="[0-9]*" value="{!! $product->quantity_item !!}" data-id="{{ $product->id }}">
                                         <div class="quantity_buttons">
                                             <div id="quantity_inc_button" class="quantity_inc j-quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
                                             <div id="quantity_dec_button" class="quantity_dec j-quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>

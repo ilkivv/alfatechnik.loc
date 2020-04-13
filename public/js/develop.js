@@ -47,8 +47,10 @@ $(document).ready(function() {
      Обновление инпута с количеством товара
      */
     $('.j-quantity_inc').click(function () {
-        var data = $('#cart-form').serializeArray();
-        $.post( "/ajax/destroy_cart", data, function() {
+        var product_id = $(this).attr('data-id');
+        var data = $('#cart-form-' + product_id).serializeArray();
+        console.log(data);
+        $.post( "/ajax/quantity_product", data, function() {
             $('.cart_price').html('0 Р');
             $('.j-cart_count > span').html('0');
             $('.j-cart-form').html('Корзина пуста');
@@ -56,8 +58,9 @@ $(document).ready(function() {
     });
 
     $('.j-quantity_dec').click(function () {
-        var data = $('#cart-form').serializeArray();
-        $.post( "/ajax/destroy_cart", data, function() {
+        var product_id = $(this).attr('data-id');
+        var data = $('#cart-form-' + product_id).serializeArray();
+        $.post( "/ajax/quantity_product", data, function() {
             $('.cart_price').html('0 Р');
             $('.j-cart_count > span').html('0');
             $('.j-cart-form').html('Корзина пуста');
@@ -65,8 +68,9 @@ $(document).ready(function() {
     });
 
     $('.j-quantity_input').change(function () {
-        var data = $('#cart-form').serializeArray();
-        $.post( "/ajax/destroy_cart", data, function() {
+        var product_id = $(this).attr('data-id');
+        var data = $('#cart-form-' + product_id).serializeArray();
+        $.post( "/ajax/quantity_product", data, function() {
             $('.cart_price').html('0 Р');
             $('.j-cart_count > span').html('0');
             $('.j-cart-form').html('Корзина пуста');

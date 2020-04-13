@@ -72,6 +72,17 @@ class CartController extends Controller
         return $cart;
     }
 
+    public function quantityProduct(Request $request)
+    {
+        $context = $request->all();
+        $cart = $this->getCart();
+
+        $product_id = $context['product_id'];
+        $quantity = $context['quantity'];
+        print_r($quantity);
+        return $cart;
+    }
+
     public function getTotal()
     {
         return $this->session->get('cart.total') ? $this->session->get('cart.total') : 0;
