@@ -12,7 +12,7 @@
 
                             @guest
                                 <div><a href="{{ route('login') }}">Авторизация</a></div>
-                                @if (!Route::has('register'))
+                                @if (Route::has('register'))
                                     <div><a href="{{ route('register') }}">Регистрация</a></div>
                                 @endif
                             @else

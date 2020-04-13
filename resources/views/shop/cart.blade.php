@@ -24,49 +24,57 @@
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
                     <div class="cart_container">
-                        <div class="cart_title">Shopping Cart</div>
+                        <div class="cart_title">Корзина</div>
+
+                        @if(Session::has('cart'))
                         <div class="cart_items">
+
                             <ul class="cart_list">
+                                @foreach(Session::get('cart.products') as $product)
                                 <li class="cart_item clearfix">
-                                    <div class="cart_item_image"><img src="images/shopping_cart.jpg" alt=""></div>
+                                    <div class="cart_item_image"><img src="/images/shopping_cart.jpg" alt=""></div>
                                     <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
                                         <div class="cart_item_name cart_info_col">
-                                            <div class="cart_item_title">Name</div>
-                                            <div class="cart_item_text">MacBook Air 13</div>
-                                        </div>
-                                        <div class="cart_item_color cart_info_col">
-                                            <div class="cart_item_title">Color</div>
-                                            <div class="cart_item_text"><span style="background-color:#999999;"></span>Silver</div>
+                                            <div class="cart_item_title">Наименование</div>
+                                            <a href="{{ url('/product/' . $product->id) }}"><div class="cart_item_text">{!! $product->name !!}</div></a>
                                         </div>
                                         <div class="cart_item_quantity cart_info_col">
-                                            <div class="cart_item_title">Quantity</div>
-                                            <div class="cart_item_text">1</div>
+                                            <div class="cart_item_title">Количество</div>
+                                            <div class="cart_item_text">{!! $product->quantity_item !!}</div>
                                         </div>
                                         <div class="cart_item_price cart_info_col">
-                                            <div class="cart_item_title">Price</div>
-                                            <div class="cart_item_text">$2000</div>
+                                            <div class="cart_item_title">Стоимость</div>
+                                            <div class="cart_item_text">{!! $product->price_item !!}</div>
                                         </div>
                                         <div class="cart_item_total cart_info_col">
-                                            <div class="cart_item_title">Total</div>
-                                            <div class="cart_item_text">$2000</div>
+                                            <div class="cart_item_title">Цена</div>
+                                            <div class="cart_item_text">{!! $product->total_item !!}</div>
+                                        </div>
+                                        <div class="cart_item_color cart_info_col">
+                                            <div class="cart_item_title">Удалить</div>
+                                            <div class="cart_item_text"><span style="background-color:#999999;"></span></div>
                                         </div>
                                     </div>
                                 </li>
+                                @endforeach
                             </ul>
                         </div>
 
                         <!-- Order Total -->
                         <div class="order_total">
                             <div class="order_total_content text-md-right">
-                                <div class="order_total_title">Order Total:</div>
-                                <div class="order_total_amount">$2000</div>
+                                <div class="order_total_title">Итого:</div>
+                                <div class="order_total_amount">{!! Session::get('cart.total') !!} Р</div>
                             </div>
                         </div>
 
                         <div class="cart_buttons">
-                            <button type="button" class="button cart_button_clear">Add to Cart</button>
-                            <button type="button" class="button cart_button_checkout">Add to Cart</button>
+                            <button type="button" class="button cart_button_clear j-cart_button_clear">Очистить</button>
+                            <button type="button" class="button cart_button_checkout j-cart_button_order">Оформить заказ</button>
                         </div>
+                        @else
+                        Корзина пуста
+                        @endif
                     </div>
                 </div>
             </div>
