@@ -33,23 +33,23 @@ class CartController extends Controller
         $cart = $this->getCart();
 
         $product_id = $context['product_id'];
-        $quantity = $context['quantity'];
+        $quantity_item = $context['quantity'];
 
-        $total = isset($cart['total']) ? $cart['total'] : 0;
-
-        $cart['quantity'] = $quantity;
+        isset($cart['total']) ? $cart['total'] : 0;
+        isset($cart['quantity']) ? $cart['quantity'] : 0;
         if (!isset($cart['products'][$product_id])){
             $cart['products'][$product_id] = $productModel->getProductItem($product_id);
-            print_r($productModel->getProductItem($product_id));
             $cart['products'][$product_id]['quantity_order'] = 0;
             $cart['products'][$product_id]['quantity_item'] = 0;
             $cart['products'][$product_id]['total_item'] = 0;
+            $cart['quantity'] = 0;
         }
         $price = $cart['products'][$product_id]['prices'][0]['price'];
         $cart['products'][$product_id]['price_item'] = $price;
-        $cart['products'][$product_id]['quantity_item'] += $quantity;
-        $cart['products'][$product_id]['total_item'] += $price * $quantity;
-        $cart['total'] = $total + $price * $quantity;
+        $cart['products'][$product_id]['quantity_item'] += $quantity_item;
+        $cart['products'][$product_id]['total_item'] += $price * $quantity_item;
+        $cart['total'] += $price * $quantity_item;
+        $cart['quantity'] += $quantity_item;
         $this->session->put('cart', $cart);
         return $cart;
     }

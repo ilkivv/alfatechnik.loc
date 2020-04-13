@@ -27,11 +27,6 @@
             </ul>
         </li>
         <li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
-        <li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-        <li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-        <li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-        <li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a></li>
-        <li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
     </ul>
 </div>
 
