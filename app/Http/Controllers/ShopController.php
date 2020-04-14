@@ -33,4 +33,9 @@ class ShopController extends Controller
     {
         return view('shop.cart');
     }
+
+    public function makeOrder()
+    {
+        return view('shop.make_order');
+    }
 }

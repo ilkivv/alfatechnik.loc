@@ -57,7 +57,7 @@
 
             <div class="cart_buttons">
                 <button type="button" class="button cart_button_clear j-button-clear-cart">Очистить</button>
-                <button type="button" class="button cart_button_checkout j-cart_button_order">Оформить заказ</button>
+                <a href="{{route('make_order')}}"><button type="button" class="button cart_button_checkout j-cart_button_order">Оформить заказ</button></a>
             </div>
         </form>
     </div>
