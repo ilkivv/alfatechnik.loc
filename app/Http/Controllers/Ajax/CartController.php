@@ -21,9 +21,9 @@ class CartController extends Controller
         return $this->session->has('cart') ? $this->session->get('cart') : $this->session->pull('cart');
     }
 
-    public function checkCartItem()
+    public function checkCartItems()
     {
-        return $this->session->get('cart.products');
+        return (count($this->session->get('cart.products')) < 1) ? $this->destroyCart() : true;
     }
 
     public function addProduct(Request $request, Product $productModel)
@@ -66,11 +66,7 @@ class CartController extends Controller
         $cart['total'] -= $cart['products'][$product_id]['total_item'];
         unset($cart['products'][$product_id]);
         $this->updateCart($cart);
-
-        if (count($cart['products']) < 1){
-            $this->destroyCart();
-        }
-        $this->updateCart($cart);
+        $this->checkCartItems();
         $cart['view'] = (String) view('components.cart_block');
         return $cart;
     }
