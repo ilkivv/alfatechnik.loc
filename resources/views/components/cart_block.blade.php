@@ -4,9 +4,10 @@
         <div class="cart_items">
             <ul class="cart_list">
                 @foreach(Session::get('cart.products') as $product)
-                    <form id="cart-form-{{$product->id}}" method="post">
-                        {{ csrf_field() }}
-                        <li class="cart_item clearfix">
+
+                        <li class="cart_item clearfix j-cart_item">
+                            <form id="cart-form-{{$product->id}}" method="post">
+                                {{ csrf_field() }}
                             <div class="cart_item_image"><img src="/images/shopping_cart.jpg" alt=""></div>
                             <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
                                 <div class="cart_item_name cart_info_col">
@@ -19,8 +20,8 @@
                                         <span>Количество: </span>
                                         <input id="quantity_input" class="j-quantity_input" name="quantity" type="text" pattern="[0-9]*" value="{!! $product->quantity_item !!}" data-id="{{ $product->id }}">
                                         <div class="quantity_buttons">
-                                            <div id="quantity_inc_button" class="quantity_inc j-quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
-                                            <div id="quantity_dec_button" class="quantity_dec j-quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
+                                            <div id="quantity_inc_button" data-id="{{ $product->id }}" class="quantity_inc j-quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
+                                            <div id="quantity_dec_button" data-id="{{ $product->id }}" class="quantity_dec j-quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
                                         </div>
                                     </div>
                                 </div>
@@ -37,9 +38,10 @@
                                     <button type="button" class="button cart_button_clear j-button-delete-product" data-id="{{$product->id}}">Удалить</button>
                                 </div>
                             </div>
+                            <input type="hidden" name="product_id" value="{{$product->id}}">
+                            </form>
                         </li>
-                        <input type="hidden" name="product_id" value="{{$product->id}}">
-                    </form>
+
                 @endforeach
             </ul>
         </div>
