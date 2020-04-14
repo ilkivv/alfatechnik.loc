@@ -5,9 +5,9 @@
             <ul class="cart_list">
                 @foreach(Session::get('cart.products') as $product)
 
-                        <li class="cart_item clearfix j-cart_item">
-                            <form id="cart-form-{{$product->id}}" method="post">
-                                {{ csrf_field() }}
+                    <li class="cart_item clearfix j-cart_item">
+                        <form id="cart-form-{{$product->id}}" method="post">
+                            {{ csrf_field() }}
                             <div class="cart_item_image"><img src="/images/shopping_cart.jpg" alt=""></div>
                             <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
                                 <div class="cart_item_name cart_info_col">
@@ -18,7 +18,7 @@
                                     <div class="cart_item_title">Количество</div>
                                     <div class="product_quantity clearfix">
                                         <span>Количество: </span>
-                                        <input id="quantity_input" class="j-quantity_input" name="quantity" type="text" pattern="[0-9]*" value="{!! $product->quantity_item !!}" data-id="{{ $product->id }}">
+                                        <input id="quantity_input" class="j-quantity_input-{{ $product->id }}" name="quantity" type="text" pattern="[0-9]*" value="{!! $product->quantity_item !!}" data-id="{{ $product->id }}">
                                         <div class="quantity_buttons">
                                             <div id="quantity_inc_button" data-id="{{ $product->id }}" class="quantity_inc j-quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
                                             <div id="quantity_dec_button" data-id="{{ $product->id }}" class="quantity_dec j-quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
@@ -39,8 +39,8 @@
                                 </div>
                             </div>
                             <input type="hidden" name="product_id" value="{{$product->id}}">
-                            </form>
-                        </li>
+                        </form>
+                    </li>
 
                 @endforeach
             </ul>

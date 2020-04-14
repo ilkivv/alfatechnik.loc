@@ -23,8 +23,7 @@ class CartController extends Controller
 
     public function checkCartItem()
     {
-        $products = $this->session->get('cart.products');
-        print_r($products);
+        return $this->session->get('cart.products');
     }
 
     public function addProduct(Request $request, Product $productModel)
@@ -84,15 +83,16 @@ class CartController extends Controller
         $product_id = $context['product_id'];
         $quantity_item = $context['quantity'];
         $price = $cart['products'][$product_id]['prices'][0]['price'];
-        /*
+
         $cart['quantity'] -= $cart['products'][$product_id]['quantity_item'];
         $cart['total'] -= $cart['products'][$product_id]['total_item'];
-        */
-        $cart['products'][$product_id]['quantity_item']+= 1;
-        $cart['products'][$product_id]['total_item'] +=20;
 
-        $cart['total'] += 20;
-        $cart['quantity'] += 20;
+        $cart['products'][$product_id]['quantity_item']= $quantity_item;
+        $cart['products'][$product_id]['total_item'] = $quantity_item * $price;
+        $cart['products'][$product_id]['price_item'] = $price;
+
+        $cart['total'] += $quantity_item * $price;
+        $cart['quantity'] += $quantity_item;
         $this->updateCart($cart);
         $cart['view'] = (String) view('components.cart_block');
         return $cart;
