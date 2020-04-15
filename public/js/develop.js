@@ -133,4 +133,32 @@ $(document).ready(function() {
         });
     }
 
+    var popup = $(".popup__overlay");
+    var btn = $(".j-profile_button_info");
+    var close = $(".close");
+
+    btn.on("click", function(e){
+        e.preventDefault();
+        popup.removeClass("hidden");
+    });
+
+    /*popup.on("click", function(e){
+        e.preventDefault();
+        if (){
+            popup.addClass("hidden");
+        }
+    });*/
+
+    /*btn.on("click", function(event) {
+        e = event || window.event
+        if (e.target == this) {
+            popup.addClass("hidden");
+        }
+    });*/
+
+    /*btn.click(function(e){
+        e.preventDefault();
+        popup.addClass("hidden");
+    });*/
+
 });

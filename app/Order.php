@@ -11,7 +11,7 @@ class Order extends Model
 
     public function getOrdersToUser($user_id)
     {
-        return $this->where('user_id', $user_id)->with('items')->get();
+        return $this->where('user_id', $user_id)->with('items.product')->get();
     }
 
     public function items()
