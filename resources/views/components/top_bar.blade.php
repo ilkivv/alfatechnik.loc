@@ -16,7 +16,7 @@
                                     <div><a href="{{ route('register') }}">Регистрация</a></div>
                                 @endif
                             @else
-                                <div><a href="">{{ Auth::user()->name }}</a></div>
+                                <div><a href="{{ route('profile') }}">{{ Auth::user()->name }}</a></div>
                                 <div>
                                     <a class="j-link-out-form" href="#">Выйти</a>
                                     <form action="{{ route('logout') }}" method="post" hidden>

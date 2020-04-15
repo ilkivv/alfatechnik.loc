@@ -6,7 +6,7 @@ $(document).ready(function() {
     initClearCart();
     initQuantityDesc();
     initQuantityCount();
-
+    initMakeOrder();
     /*
     Добавление в корзину
      */
@@ -95,7 +95,6 @@ $(document).ready(function() {
                     $('.cart_price').html(result.total + ' Р');
                     $('.j-cart_count > span').html(result.quantity);
                     $('.j-cart_container').html(result.view);
-                    $('.j-cart_container').show();
                 });
             }
         });
@@ -115,7 +114,21 @@ $(document).ready(function() {
                 $('.cart_price').html(result.total + ' Р');
                 $('.j-cart_count > span').html(result.quantity);
                 $('.j-cart_container').html(result.view);
-                $('.j-cart_container').show();
+            });
+        });
+    }
+
+    /*
+     Оформление заказа
+     */
+
+    function initMakeOrder() {
+        $(document).on('click', '.j-cart_make_order' , function () {
+            var data = $('#cart-make_order-form').serializeArray();
+            $.post( "/ajax/make_order", data, function(result) {
+                $('.cart_price').html('0 Р');
+                $('.j-cart_count > span').html('0');
+                $('.j-cart_container').html('Заказ № ' + result + ' оформлен.');
             });
         });
     }

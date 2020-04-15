@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Ajax;
 
 use App\Http\Controllers\Controller;
+use App\OrderItem;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Session\SessionManager;
 use App\Product;
+use App\Order;
 
 class CartController extends Controller
 {
@@ -21,9 +24,14 @@ class CartController extends Controller
         return $this->session->has('cart') ? $this->session->get('cart') : $this->session->pull('cart');
     }
 
-    public function checkCartItems()
+    protected function checkCartItems()
     {
         return (count($this->session->get('cart.products')) < 1) ? $this->destroyCart() : true;
+    }
+
+    protected function checkCart()
+    {
+        return (count($this->session->get('cart.products')) > 0) ? true : false;
     }
 
     public function addProduct(Request $request, Product $productModel)
@@ -99,8 +107,35 @@ class CartController extends Controller
         return $this->session->get('cart.total') ? $this->session->get('cart.total') : 0;
     }
 
-    public function destroyCart()
+    protected function destroyCart()
     {
         return $this->session->forget('cart');
+    }
+
+    public function makeOrder(User $user)
+    {
+        if ($this->checkCart()){
+            $order = new Order;
+            $cart = $this->getCart();
+            $order->user_id = $user->getId();
+            $order->count = $cart['quantity'];
+            $order->price = $cart['total'];
+            $order->discount = 0;
+            $order->save();
+
+            if($order->id){
+                foreach ($cart['products'] as $item) {
+                    $orderItem = new OrderItem;
+                    $orderItem->order_id = $order->id;
+                    $orderItem->product_id = $item['id'];
+                    $orderItem->quantity = $item['quantity_item'];
+                    $orderItem->price = $item['price_item'];
+                    $orderItem->total = $item['total_item'];
+                    $orderItem->save();
+                }
+            }
+            $this->destroyCart();
+            return $order->id;
+        }
     }
 }

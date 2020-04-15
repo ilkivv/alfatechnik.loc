@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
+use App\User;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -10,9 +12,11 @@ class ProfileController extends Controller
     {
     }
 
-    public function profile()
+    public function profile(Order $orderModel, User $userModel)
     {
-        return view('shop.profile');
+        $user_id = $userModel->getId();
+        $orders = $orderModel->getOrdersToUser($user_id);
+        return view('shop.profile', ['orders' => $orders]);
     }
 
     public function wishlist()
