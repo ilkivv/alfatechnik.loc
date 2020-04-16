@@ -36,6 +36,8 @@ Route::get('/make_order', 'ShopController@makeOrder')->name('make_order');
 
 Route::post('/ajax/make_order', 'Ajax\CartController@makeOrder')->name('ajax_make_order');
 
+Route::post('/ajax/delivery_calc', 'DeliveryController@makeOrder')->name('delivery_calc');
+
 Route::get('/wishlist', 'ProfileController@wishlist')->name('wishlist');
 
 Route::post('/ajax/add_product', 'Ajax\CartController@addProduct')->name('add_product');

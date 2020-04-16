@@ -14,6 +14,7 @@
     <link href="/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="/styles/cart_styles.css">
     <link rel="stylesheet" type="text/css" href="/styles/cart_responsive.css">
+    <link rel="stylesheet" type="text/css" href="/styles/develop.css">
 @stop
 
 @section('content')
@@ -53,10 +54,30 @@
                                                         </div>
                                                     </div>
                                                     <input type="hidden" name="product_id" value="{{$product->id}}">
-
                                                 </li>
-
                                             @endforeach
+                                        </ul>
+                                    </div>
+
+                                    <div class="cart_items">
+                                        <ul class="cart_list">
+                                                <li class="cart_item clearfix j-cart_item">
+                                                    <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+                                                        <div class="form-group row">
+                                                            <div class="col-md-4">
+                                                                <label for="city_delivery" class="col-md-4 col-form-label text-md-right">Город</label>
+                                                                <input id="city_delivery" name="city_delivery" class="form-control mdb-autocomplete">
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <img class="j-image-delivery" src="/images/deliveries/sdek.jpg" height="100px" width="200px" data-id="1">
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <img class="j-image-delivery" src="/images/deliveries/ruspost.jpeg" height="100px" width="200px" data-id="2">
+                                                            </div>
+                                                            <input type="hidden" id="delivery" name="delivery">
+                                                        </div>
+                                                    </div>
+                                                </li>
                                         </ul>
                                     </div>
                                     <!-- Order Total -->
@@ -86,6 +107,7 @@
 @section('scripts')
 
     <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="/styles/bootstrap4/popper.js"></script>
     <script src="/styles/bootstrap4/bootstrap.min.js"></script>
     <script src="/plugins/greensock/TweenMax.min.js"></script>
@@ -95,5 +117,6 @@
     <script src="/plugins/greensock/ScrollToPlugin.min.js"></script>
     <script src="/plugins/easing/easing.js"></script>
     <script src="/js/cart_custom.js"></script>
+
 
 @stop

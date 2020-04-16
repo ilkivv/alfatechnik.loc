@@ -16,7 +16,7 @@ class ProfileController extends Controller
     {
         $user_id = $userModel->getId();
         $orders = $orderModel->getOrdersToUser($user_id);
-        return view('shop.profile', ['orders' => $orders]);
+        return ($user_id) ? view('shop.profile', ['orders' => $orders]) : redirect()->route('index');
     }
 
     public function wishlist()

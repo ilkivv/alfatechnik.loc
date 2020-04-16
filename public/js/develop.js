@@ -161,4 +161,51 @@ $(document).ready(function() {
         popup.addClass("hidden");
     });*/
 
+    var image_delivery = $('.j-image-delivery');
+    var border_img_delivery = 'j-image-border-active';
+    var input_delivery = $('#delivery');
+    var form_make_order = $('#cart-make_order-form');
+
+    image_delivery.on('click', function () {
+        image_delivery.removeClass(border_img_delivery);
+        $(this).addClass(border_img_delivery);
+        $('#delivery').val($(this).data('id'));
+        var data = form_make_order.serializeArray();
+        $.post( "/ajax/delivery_calc", data, function(result) {
+            /*$('.cart_price').html('0 Р');
+            $('.j-cart_count > span').html('0');
+            $('.j-cart_container').html('Заказ № ' + result + ' оформлен.');*/
+        });
+    });
+
+
+    $("#city_delivery").autocomplete({
+        source : function(request, response) {
+            $.ajax({
+                url : "http://api.cdek.ru/city/getListByTerm/jsonp.php?callback=?",
+                dataType : "jsonp",
+                data : {
+                    q : function() {
+                        return $("#city_delivery").val()
+                    },
+                    name_startsWith : function() {
+                        return $("#city_delivery").val()
+                    }
+                },
+                success : function(data) {
+                    response($.map(data.geonames, function(item) {
+                        return {
+                            label : item.name,
+                            value : item.name,
+                            id : item.id
+                        }
+                    }));
+                }
+            });
+        },
+        minLength : 1,
+        select : function(event, ui) {
+            //$('#receiverCityId').val(ui.item.id);
+        }
+    });
 });
