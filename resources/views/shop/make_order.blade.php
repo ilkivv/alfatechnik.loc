@@ -65,24 +65,63 @@
                                                     <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
                                                         <div class="form-group row">
                                                             <div class="col-md-4">
-                                                                <label for="city_delivery" class="col-md-4 col-form-label text-md-right">Город</label>
-                                                                <input id="city_delivery" name="city_delivery" class="form-control mdb-autocomplete">
+                                                                <label for="fio" class="col-md-4 col-form-label text-md-right">ФИО</label>
+                                                                <input id="fio" type="text" name="fio" class="form-control mdb-autocomplete" value="{!! $user->fio !!}">
                                                             </div>
                                                             <div class="col-md-4">
-                                                                <img class="j-image-delivery" src="/images/deliveries/sdek.jpg" height="100px" width="200px" data-id="1">
+                                                                <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
+                                                                <input id="email" type="email" name="email" class="form-control mdb-autocomplete" value="{!! $user->email !!}">
                                                             </div>
                                                             <div class="col-md-4">
-                                                                <img class="j-image-delivery" src="/images/deliveries/ruspost.jpeg" height="100px" width="200px" data-id="2">
+                                                                <label for="phone" class="col-md-4 col-form-label text-md-right">Телефон</label>
+                                                                <input id="phone" type="tel" name="phone" class="form-control mdb-autocomplete" value="{!! $user->phone !!}">
                                                             </div>
-                                                            <input type="hidden" id="delivery" name="delivery">
                                                         </div>
                                                     </div>
                                                 </li>
                                         </ul>
                                     </div>
+
+                                    <div class="cart_items">
+                                        <ul class="cart_list">
+                                            <li class="cart_item clearfix j-cart_item">
+                                                <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+                                                    <div class="form-group row">
+                                                        <div class="col-md-4">
+                                                            <label for="city_delivery" class="col-md-4 col-form-label text-md-right">Город</label>
+                                                            <input id="city_delivery" name="city_delivery" class="form-control mdb-autocomplete">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <img class="j-image-delivery hidden" src="/images/deliveries/sdek.jpg" height="100px" width="200px" data-id="1">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <img class="j-image-delivery hidden" src="/images/deliveries/ruspost.jpeg" height="100px" width="200px" data-id="2">
+                                                        </div>
+                                                        <input type="hidden" id="delivery" name="delivery">
+                                                        <input type="hidden" name="receiverCityId" id="receiverCityId" value="">
+                                                        <input type="hidden" name="weight" id="weight" value="0.3">
+                                                        <!-- Длина места, см. -->
+                                                        <input type="hidden" name="length" id="length" value="10">
+                                                        <!-- Ширина места, см. -->
+                                                        <input type="hidden" name="width" id="width" value="7">
+                                                        <!-- Высота места, см. -->
+                                                        <input type="hidden" name="height" id="height" value="5">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
                                     <!-- Order Total -->
-                                    <div class="order_total">
-                                        <div class="order_total_content text-md-right">
+                                    <div class="order_total row">
+                                        <div class="order_total_content text-md-left col-lg-4">
+                                            <div class="order_total_title">Сумма:</div>
+                                            <div class="order_total_amount">{!! Session::get('cart.total') !!} Р</div>
+                                        </div>
+                                        <div class="order_total_content text-md-center col-lg-4">
+                                            <div class="order_total_title">Доставка:</div>
+                                            <div class="order_total_amount j-order_total_amount"></div>
+                                        </div>
+                                        <div class="order_total_content text-md-right col-lg-4">
                                             <div class="order_total_title">Итого:</div>
                                             <div class="order_total_amount">{!! Session::get('cart.total') !!} Р</div>
                                         </div>

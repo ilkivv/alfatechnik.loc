@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
+use App\User;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Facades\Route;
 
@@ -34,8 +35,9 @@ class ShopController extends Controller
         return view('shop.cart');
     }
 
-    public function makeOrder()
+    public function makeOrder(Request $request, User $userModel)
     {
-        return view('shop.make_order');
+        $user = $userModel->getUser();
+        return view('shop.make_order', ['user' => $user]);
     }
 }

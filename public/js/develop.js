@@ -172,40 +172,31 @@ $(document).ready(function() {
         $('#delivery').val($(this).data('id'));
         var data = form_make_order.serializeArray();
         $.post( "/ajax/delivery_calc", data, function(result) {
-            /*$('.cart_price').html('0 Р');
-            $('.j-cart_count > span').html('0');
-            $('.j-cart_container').html('Заказ № ' + result + ' оформлен.');*/
+            $('.j-order_total_amount').html(result.result.price + ' Р');
         });
     });
 
 
     $("#city_delivery").autocomplete({
+
         source : function(request, response) {
-            $.ajax({
-                url : "http://api.cdek.ru/city/getListByTerm/jsonp.php?callback=?",
-                dataType : "jsonp",
-                data : {
-                    q : function() {
-                        return $("#city_delivery").val()
-                    },
-                    name_startsWith : function() {
-                        return $("#city_delivery").val()
+            var request = form_make_order.serializeArray();
+            console.log(request);
+            $.post( "/ajax/city_delivery", request, function(data){
+
+                response(jQuery.map(data, function(item) {
+                    return {
+                        label : item.full_name + ", " + item.obl_name,
+                        value : item.full_name,
+                        id : item.id
                     }
-                },
-                success : function(data) {
-                    response($.map(data.geonames, function(item) {
-                        return {
-                            label : item.name,
-                            value : item.name,
-                            id : item.id
-                        }
-                    }));
-                }
+                }));
             });
         },
-        minLength : 1,
-        select : function(event, ui) {
-            //$('#receiverCityId').val(ui.item.id);
+        minLength : 2,
+        select: function (event, result) {
+            $('#receiverCityId').val(result.item.id);
+            $('.j-image-delivery').removeClass('hidden');
         }
     });
 });

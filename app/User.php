@@ -42,4 +42,9 @@ class User extends Authenticatable
     {
         return Auth::id() ? Auth::id() : null;
     }
+
+    public function getUser()
+    {
+        return Auth::user() ? Auth::user() : null;
+    }
 }
