@@ -21,9 +21,9 @@ class Curl
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        $html = curl_exec($ch);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+        $result = curl_exec($ch);
         curl_close($ch);
-        return $html; // Выведет код страницы vk.com
+        return json_decode($result, true); // Выведет код страницы vk.com
     }
 }

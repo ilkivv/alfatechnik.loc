@@ -180,7 +180,9 @@ return [
          */
         App\Providers\MenuServiceProvider::class,
         App\Providers\CategoryServiceProvider::class,
-
+        App\Providers\CityServiceProvider::class,
+        App\Providers\UserServiceProvider::class,
+        App\Providers\SessionServiceProvider::class,
         /**
          * SleepingOwl Service Provider
          */

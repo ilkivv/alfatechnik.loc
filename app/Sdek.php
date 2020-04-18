@@ -7,16 +7,23 @@ use App\Curl;
 
 class Sdek extends Model
 {
-    protected $table = 'sdeks';
+    protected $table = 'cities';
 
     public function getDeliveryCalc($request)
     {
+        $tariffList = [
+            ['id' => 1],
+            ['id' => 11],
+            ['id' => 12],
+            ['id' => 13],
+            ['id' => 14],
+        ];
         $array = [
             'version'   => '1.0',
             'dateExecute' => date('Y-m-d'), //Планируемая дата отправки заказа в формате “ГГГГ-ММ-ДД”
             'senderCityId' => '270',//Код города отправителя из базы СДЭК
             'receiverCityId' => $request['receiverCityId'],//Код города получателя из базы СДЭК
-            'tariffId' => '11',//Код выбранного тарифа (подробнее см. приложение 1)
+            'tariffId' => '10',//Код выбранного тарифа (подробнее см. приложение 1)
             'goods' => [ //Габаритные характеристики упаковки
                 [
                     'weight' => $request['weight'],

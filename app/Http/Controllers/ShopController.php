@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Delivery;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
-use App\User;
-use Illuminate\Routing\UrlGenerator;
-use Illuminate\Support\Facades\Route;
 
 class ShopController extends Controller
 {
@@ -35,9 +33,9 @@ class ShopController extends Controller
         return view('shop.cart');
     }
 
-    public function makeOrder(Request $request, User $userModel)
+    public function makeOrder(Request $request, Delivery $deliveryModel)
     {
-        $user = $userModel->getUser();
-        return view('shop.make_order', ['user' => $user]);
+        $deliveries = $deliveryModel->getDeliveries();
+        return view('shop.make_order', ['deliveries' => $deliveries]);
     }
 }

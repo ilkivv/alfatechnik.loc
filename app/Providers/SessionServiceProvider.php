@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Http\ViewComposers\SessionComposer;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class SessionServiceProvider extends ServiceProvider
 {
@@ -24,7 +26,7 @@ class SessionServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(
-            'layouts.app', 'App\Http\ViewComposers\SessionComposer'
+            '*', SessionComposer::class
         );
     }
 }

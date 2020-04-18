@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use App\Http\ViewComposers\CategoryComposer;
+use App\Http\ViewComposers\CityComposer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
-class CategoryServiceProvider extends ServiceProvider
+class CityServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -26,7 +26,7 @@ class CategoryServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(
-            'layouts.app', CategoryComposer::class
+            'layouts.app', CityComposer::class
         );
     }
 }

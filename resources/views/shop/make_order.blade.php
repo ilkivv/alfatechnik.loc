@@ -18,7 +18,6 @@
 @stop
 
 @section('content')
-
     <div class="cart_section">
         <div class="container">
             <div class="row">
@@ -58,7 +57,7 @@
                                             @endforeach
                                         </ul>
                                     </div>
-
+                                    <div class="cart_title">Доставка</div>
                                     <div class="cart_items">
                                         <ul class="cart_list">
                                                 <li class="cart_item clearfix j-cart_item">
@@ -66,38 +65,37 @@
                                                         <div class="form-group row">
                                                             <div class="col-md-4">
                                                                 <label for="fio" class="col-md-4 col-form-label text-md-right">ФИО</label>
-                                                                <input id="fio" type="text" name="fio" class="form-control mdb-autocomplete" value="{!! $user->fio !!}">
+                                                                <input id="fio" type="text" name="fio" class="form-control mdb-autocomplete" value="@if (isset($user)) {!! $user->fio !!}@endif">
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
-                                                                <input id="email" type="email" name="email" class="form-control mdb-autocomplete" value="{!! $user->email !!}">
+                                                                <input id="email" type="email" name="email" class="form-control mdb-autocomplete" value="@if (isset($user)) {!! $user->email !!}@endif">
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <label for="phone" class="col-md-4 col-form-label text-md-right">Телефон</label>
-                                                                <input id="phone" type="tel" name="phone" class="form-control mdb-autocomplete" value="{!! $user->phone !!}">
+                                                                <input id="phone" type="tel" name="phone" class="form-control mdb-autocomplete" value="@if (isset($user)) {!! $user->phone !!}@endif">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </li>
                                         </ul>
                                     </div>
-
+                                    <div class="cart_title">Оплата</div>
                                     <div class="cart_items">
                                         <ul class="cart_list">
                                             <li class="cart_item clearfix j-cart_item">
                                                 <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
                                                     <div class="form-group row">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <label for="city_delivery" class="col-md-4 col-form-label text-md-right">Город</label>
                                                             <input id="city_delivery" name="city_delivery" class="form-control mdb-autocomplete">
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <img class="j-image-delivery hidden" src="/images/deliveries/sdek.jpg" height="100px" width="200px" data-id="1">
+                                                        @foreach($deliveries as $delivery)
+                                                        <div class="col-md-3">
+                                                            <img class="j-image-delivery hidden" src="{{ url($delivery->image) }}" height="100px" width="200px" data-id="{{ $delivery->id }}">
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <img class="j-image-delivery hidden" src="/images/deliveries/ruspost.jpeg" height="100px" width="200px" data-id="2">
-                                                        </div>
-                                                        <input type="hidden" id="delivery" name="delivery">
+                                                        @endforeach
+                                                        <input type="hidden" id="delivery_id" name="delivery_id" value="">
                                                         <input type="hidden" name="receiverCityId" id="receiverCityId" value="">
                                                         <input type="hidden" name="weight" id="weight" value="0.3">
                                                         <!-- Длина места, см. -->

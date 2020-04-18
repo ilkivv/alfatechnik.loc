@@ -163,21 +163,25 @@ $(document).ready(function() {
 
     var image_delivery = $('.j-image-delivery');
     var border_img_delivery = 'j-image-border-active';
-    var input_delivery = $('#delivery');
+    var input_delivery = $('#delivery_id');
     var form_make_order = $('#cart-make_order-form');
+    var city_delivery = $("#city_delivery");
+    var receiver_id =  $('#receiverCityId');
+    var order_total_amount = $('.j-order_total_amount');
 
     image_delivery.on('click', function () {
         image_delivery.removeClass(border_img_delivery);
         $(this).addClass(border_img_delivery);
-        $('#delivery').val($(this).data('id'));
+        console.log($(this).data('id'));
+        input_delivery.val($(this).data('id'));
         var data = form_make_order.serializeArray();
         $.post( "/ajax/delivery_calc", data, function(result) {
-            $('.j-order_total_amount').html(result.result.price + ' Р');
+            order_total_amount.html(result.result.price + ' Р');
         });
     });
 
 
-    $("#city_delivery").autocomplete({
+    city_delivery.autocomplete({
 
         source : function(request, response) {
             var request = form_make_order.serializeArray();
@@ -195,8 +199,8 @@ $(document).ready(function() {
         },
         minLength : 2,
         select: function (event, result) {
-            $('#receiverCityId').val(result.item.id);
-            $('.j-image-delivery').removeClass('hidden');
+            receiver_id.val(result.item.id);
+            image_delivery.removeClass('hidden');
         }
     });
 });

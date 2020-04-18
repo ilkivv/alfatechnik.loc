@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\ViewComposers\MenuComposer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -28,7 +29,7 @@ class MenuServiceProvider extends ServiceProvider
          * Выводим меню
          */
         View::composer(
-            'layouts.app', 'App\Http\ViewComposers\MenuComposer'
+            'layouts.app', MenuComposer::class
         );
 
 
