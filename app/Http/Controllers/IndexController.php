@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Menu;
 use App\Catalog;
 use Illuminate\Auth;
+use App\Imports\MobaImport;
 
 class IndexController extends Controller
 {
@@ -18,8 +19,9 @@ class IndexController extends Controller
     /*
      * Главная
      */
-    public function index()
+    public function index(MobaImport $mobaImportModel)
     {
+        $mobaImportModel->parsingMoba();
         return view('pages.index');
     }
 
