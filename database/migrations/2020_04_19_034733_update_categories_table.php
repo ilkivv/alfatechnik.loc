@@ -23,6 +23,7 @@ class UpdateCategoriesTable extends Migration
             $table->integer('count_prod')->nullable()->change();
             $table->integer('sort')->nullable()->change();
             $table->boolean('active')->nullable()->default(1)->change();
+            $table->unique('path');
         });
     }
 

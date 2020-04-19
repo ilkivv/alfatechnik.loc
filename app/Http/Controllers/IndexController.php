@@ -21,7 +21,7 @@ class IndexController extends Controller
      */
     public function index(MobaImport $mobaImportModel)
     {
-        $mobaImportModel->parsingMoba();
+        //$mobaImportModel->parsingMoba();die;
         return view('pages.index');
     }
 
