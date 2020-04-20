@@ -56,7 +56,6 @@ class Category extends Model
     public function getProductsItems($url)
     {
         $category['category'] = $this->where('url', $url)->first();
-        //dd($category);
         $category['categories'] = $this->where('cleft', '>=', $category['category']['cleft'])->where('cright', '<=', $category['category']['cright'])->with('products.prices')->get()->toArray();
         return $category;
     }
@@ -70,6 +69,21 @@ class Category extends Model
         return $parent;
     }
 
+    public function getPopularCategories()
+    {
+        return $this->active()->level(2)->get()->random(10);
+    }
+
+    public function getRandomCat()
+    {
+        return $this->active()->level(4)->productprices()->get()->random(1);
+    }
+
+    public function getBestSellersCat()
+    {
+        return $this->active()->level(4)->productprices()->get()->random(1);
+    }
+
     public function products()
     {
         return $this->hasMany(Product::class);
@@ -78,5 +92,25 @@ class Category extends Model
     public function categories()
     {
         return $this->hasMany($this, 'parent_id', 'id');
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', 1);
+    }
+
+    public function scopeLevel($query, $level)
+    {
+        return $query->where('level', $level);
+    }
+
+    public function scopeId($query, $id)
+    {
+        return $query->where('id', $id);
+    }
+
+    public function scopeProductprices($query)
+    {
+        return $query->with('products.prices');
     }
 }

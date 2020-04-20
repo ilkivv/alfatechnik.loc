@@ -27,17 +27,13 @@
 
             <div class="col-lg-2 offset-lg-2">
                 <div class="footer_column">
-                    <div class="footer_title">Find it Fast</div>
+                    <div class="footer_title">Вы можете </div>
                     <ul class="footer_list">
                         <li><a href="#">Computers & Laptops</a></li>
                         <li><a href="#">Cameras & Photos</a></li>
                         <li><a href="#">Hardware</a></li>
                         <li><a href="#">Smartphones & Tablets</a></li>
                         <li><a href="#">TV & Audio</a></li>
-                    </ul>
-                    <div class="footer_subtitle">Gadgets</div>
-                    <ul class="footer_list">
-                        <li><a href="#">Car Electronics</a></li>
                     </ul>
                 </div>
             </div>

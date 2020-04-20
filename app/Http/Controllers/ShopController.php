@@ -19,14 +19,15 @@ class ShopController extends Controller
         $url = $request->path();
         $category = $categoryModel->getProductsItems($url);
         $category['count'] = 100/*count($category['products'])*/;
-        //dd($category);
+
         return view('shop.products', ['category' => $category['category'], 'categories' => $category['categories']]);
     }
 
     public function product($id, Product $productModel)
     {
         $product = $productModel->getProductItem($id);
-        return view('shop.product', ['product' => $product]);
+        $viewed = $productModel->getViewed();
+        return view('shop.product', ['product' => $product, 'viewed' => $viewed]);
     }
 
     public function cart()

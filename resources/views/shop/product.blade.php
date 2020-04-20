@@ -89,7 +89,7 @@
 
     <!-- Recently Viewed -->
 
-    @include('components.recently')
+    @include('components.viewed')
 
 @stop
 

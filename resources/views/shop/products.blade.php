@@ -68,31 +68,29 @@
                         <div class="product_grid">
                             <div class="product_grid_border"></div>
                         @foreach($categories as $category)
-                            {{ print_r($category) }}
-                            @if ($category->products->isEmpty())
-                                {{ print_r(count_r($category->products)) }}
-                            @endif
-                            @foreach($category['products'] as $product)
-                                <!-- Product Item -->
-                                    <div class="product_item is_new discount">
-                                        <div class="product_border"></div>
-                                        <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="/images/new_5.jpg" alt="{{ $product->name }}"></div>
-                                        <div class="product_content">
-                                            <div class="product_price">{!! $product->prices->first()->price !!}</div>
-                                            <div class="product_name"><div><a href="{{url('/product/'.$product->id)}}" tabindex="0">{!! $product->name !!}</a></div></div>
+                            @if ($category['products'])
+                                @foreach($category['products'] as $product)
+                                    <!-- Product Item -->
+                                        <div class="product_item is_new discount">
+                                            <div class="product_border"></div>
+                                            <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="/images/new_5.jpg" alt="{{ $product['name'] }}"></div>
+                                            <div class="product_content">
+                                                <div class="product_price">{!! $product['prices'][0]['price'] !!}</div>
+                                                <div class="product_name"><div><a href="{{url('/product/'.$product['id'])}}" tabindex="0">{!! $product['name'] !!}</a></div></div>
+                                            </div>
+                                            <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                            <ul class="product_marks">
+                                                @if(isset($product['discount']) && $product['discount'] > 0)
+                                                    <li class="product_mark product_discount">-{!! $product['discount'] !!}%</li>
+                                                @endif
+                                                @if($product['is_new'])
+                                                    <li class="product_mark product_new">New</li>
+                                                @endif
+                                            </ul>
                                         </div>
-                                        <div class="product_fav"><i class="fas fa-heart"></i></div>
-                                        <ul class="product_marks">
-                                            @if(isset($product->discount) && $product->discount > 0)
-                                                <li class="product_mark product_discount">-{!! $product->discount !!}%</li>
-                                            @endif
-                                            @if($product->is_new)
-                                                <li class="product_mark product_new">New</li>
-                                            @endif
-                                        </ul>
-                                    </div>
+                                    @endforeach
+                                @endif
                             @endforeach
-                        @endforeach
                         </div>
 
                         <!-- Shop Page Navigation -->
