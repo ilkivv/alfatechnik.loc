@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('title')
+    Запчасти для смартфонов, планшетов и ноутбуков
+@stop
+
+@section('description')
+
+@stop
+
 @section('styles')
 
     <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">

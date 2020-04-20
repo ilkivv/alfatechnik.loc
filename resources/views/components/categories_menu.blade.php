@@ -6,12 +6,12 @@
 
     <ul class="cat_menu">
         @foreach($categoriesItems as $categoriesItem)
-            <li class="hassubs">
+            <li @if(isset($categoriesItem['childrens']))class="hassubs"@endif>
                 <a href="{{url($categoriesItem['url'])}}">{!! $categoriesItem['name'] !!}<i class="fas fa-chevron-right ml-auto"></i></a>
                 @if(isset($categoriesItem['childrens']))
                 <ul>
                     @foreach($categoriesItem['childrens'] as $subcategory)
-                    <li class="hassubs">
+                    <li @if(isset($subcategory['childrens']))class="hassubs"@endif>
                         <a href="{{url($subcategory['url'])}}">{!! $subcategory['name'] !!}<i class="fas fa-chevron-right"></i></a>
                         @if(isset($subcategory['childrens']))
                         <ul>

@@ -24,7 +24,6 @@
                                         <button class="j-submit-out-form" type="submit" hidden/>
                                     </form>
                                 </div>
-
                             @endguest
                     </div>
                 </div>

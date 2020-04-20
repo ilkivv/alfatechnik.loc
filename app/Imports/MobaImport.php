@@ -31,7 +31,6 @@ class MobaImport implements ToModel
         $this->path_dir = '/files';
         $this->provider = 'Ж';
         $this->current_counter = 0;
-        $this->spreadsheet = $this->createXlsxFile();
         $this->category = new Category();
     }
 
@@ -60,6 +59,7 @@ class MobaImport implements ToModel
     public function parsingMoba($start = 5, $list = 1)
     {
         Curl::getCurlToFile($this->url . $this->file,  $this->path_dir, $this->file);//скачиваем файл
+        $this->spreadsheet = $this->createXlsxFile();
         $makeExcel = $this->makeExcel($this->path_dir, $this->file);//парсим эксель и получаем массив
         $this->clearMemory($makeExcel);
         $excel = array_slice($makeExcel[$list - 1], $start);//обрезаем лишние элементы массива

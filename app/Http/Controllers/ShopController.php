@@ -18,8 +18,9 @@ class ShopController extends Controller
     {
         $url = $request->path();
         $category = $categoryModel->getProductsItems($url);
-        $category->count = count($category->products);
-        return view('shop.products', ['category' => $category]);
+        $category['count'] = 100/*count($category['products'])*/;
+        //dd($category);
+        return view('shop.products', ['category' => $category['category'], 'categories' => $category['categories']]);
     }
 
     public function product($id, Product $productModel)

@@ -27,7 +27,7 @@
         <div class="home_background parallax-window" data-parallax="scroll" data-image-src="/images/shop_background.jpg"></div>
         <div class="home_overlay"></div>
         <div class="home_content d-flex flex-column align-items-center justify-content-center">
-            <h2 class="home_title">{!! $category->name !!}</h2>
+            <h2 class="home_title">{!! $category['name'] !!}</h2>
         </div>
     </div>
 
@@ -49,7 +49,7 @@
 
                     <div class="shop_content">
                         <div class="shop_bar clearfix">
-                            <div class="shop_product_count"><span>{!! $category->count !!}</span> товара (ов) найдено</div>
+                            <div class="shop_product_count"><span>{!! $category['count'] !!}</span> товара (ов) найдено</div>
                             <div class="shop_sorting">
                                 <span>Сортировать по:</span>
                                 <ul>
@@ -67,27 +67,32 @@
 
                         <div class="product_grid">
                             <div class="product_grid_border"></div>
-
-                            @foreach($category->products as $product)
-                            <!-- Product Item -->
-                            <div class="product_item is_new discount">
-                                <div class="product_border"></div>
-                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="/images/new_5.jpg" alt="{{ $product->name }}"></div>
-                                <div class="product_content">
-                                    <div class="product_price">{!! $product->prices->first()->price !!}</div>
-                                        <div class="product_name"><div><a href="{{url('/product/'.$product->id)}}" tabindex="0">{!! $product->name !!}</a></div></div>
-                                </div>
-                                <div class="product_fav"><i class="fas fa-heart"></i></div>
-                                <ul class="product_marks">
-                                    @if(isset($product->discount) && $product->discount > 0)
-                                        <li class="product_mark product_discount">-{!! $product->discount !!}%</li>
-                                    @endif
-                                    @if($product->is_new)
-                                        <li class="product_mark product_new">New</li>
-                                    @endif
-                                </ul>
-                            </div>
+                        @foreach($categories as $category)
+                            {{ print_r($category) }}
+                            @if ($category->products->isEmpty())
+                                {{ print_r(count_r($category->products)) }}
+                            @endif
+                            @foreach($category['products'] as $product)
+                                <!-- Product Item -->
+                                    <div class="product_item is_new discount">
+                                        <div class="product_border"></div>
+                                        <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="/images/new_5.jpg" alt="{{ $product->name }}"></div>
+                                        <div class="product_content">
+                                            <div class="product_price">{!! $product->prices->first()->price !!}</div>
+                                            <div class="product_name"><div><a href="{{url('/product/'.$product->id)}}" tabindex="0">{!! $product->name !!}</a></div></div>
+                                        </div>
+                                        <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                        <ul class="product_marks">
+                                            @if(isset($product->discount) && $product->discount > 0)
+                                                <li class="product_mark product_discount">-{!! $product->discount !!}%</li>
+                                            @endif
+                                            @if($product->is_new)
+                                                <li class="product_mark product_new">New</li>
+                                            @endif
+                                        </ul>
+                                    </div>
                             @endforeach
+                        @endforeach
                         </div>
 
                         <!-- Shop Page Navigation -->
